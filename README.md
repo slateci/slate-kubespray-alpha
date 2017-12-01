@@ -2,6 +2,14 @@
 
 ## Prerequisites
 
+First, basic terminology for the installation:
+* slace-manager: This is where you will run all the scripts for the installation. It will not be part of the resulting Kubernetes cluster.
+* slate-master: These are the nodes that will orchestrate Kubernetes cluster. The recommended setup is to have three of them.
+* slate-node: These are the nodes that will actually run the services.
+A single machine can function as both slate-master and slate-node. The slate-manager should be separate. Our test setup consists of four machines, one used as the slate-manager and three used as both slate-master and slate-node.
+
+Basic required configurations of the machines:
+* CentOS/RHEL 7
 * The user provisioning the cluster must have passwordless sudo access to the targets
 * Nodes (both Master and Worker) must have swap disabled
 ```
@@ -15,8 +23,8 @@ net.ipv4.ip_nonlocal_bind = 1
 ```
 
 
-## Configuring Manager and Kubespray
-Additional notes and instructions can be found within Kubespray's own docs:
+## Configuring slate-manager and Kubespray
+These are all steps to do on the slate-manager. Additional notes and instructions can be found within Kubespray's own docs:
 https://github.com/mrbobbytables/kubespray/blob/master/docs/ansible.md
 
 Install pip as appropriate to the host OS. e.g. For CentOS
