@@ -4,7 +4,15 @@
 
 * The user provisioning the cluster must have passwordless sudo access to the targets
 * Nodes (both Master and Worker) must have swap disabled
+```
+> cat /proc/swaps
+Filename                                Type            Size    Used    Priority
+```
 * Any node that is intended to run keepalived must have the sysctl setting `net.ipv4.ip_nonlocal_bind=1` configured.
+```
+> sysctl net.ipv4.ip_nonlocal_bind
+net.ipv4.ip_nonlocal_bind = 1
+```
 
 
 ## Configuring Manager and Kubespray
