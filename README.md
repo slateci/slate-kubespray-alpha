@@ -3,10 +3,12 @@
 ## Prerequisites
 
 First, basic terminology for the installation:
-* slace-manager: This is where you will run all the scripts for the installation. It will not be part of the resulting Kubernetes cluster.
-* slate-master: These are the nodes that will orchestrate Kubernetes cluster. The recommended setup is to have three of them.
-* slate-node: These are the nodes that will actually run the services.
-A single machine can function as both slate-master and slate-node. The slate-manager should be separate. Our test setup consists of four machines, one used as the slate-manager and three used as both slate-master and slate-node.
+* manager: This is where you will run all the scripts for the installation. It will not be part of the resulting Kubernetes cluster. It is the manager of the installation, not Kubernetes.
+* master: These are the nodes that will orchestrate Kubernetes cluster. The recommended setup is to have three of them.
+* node: These are the nodes that will actually run the services.
+A single machine can function as both slate-master and slate-node. The slate-manager should be separate. Here we will assume our setup consists of four machines:
+* slate-mgr: the manager node from which we perform the installation
+* slate-01, slate-02, slate-03: each machine will be used as both slate-master and slate-node. 
 
 Basic required configurations of the machines:
 * CentOS/RHEL 7
@@ -16,15 +18,15 @@ Basic required configurations of the machines:
 > cat /proc/swaps
 Filename                                Type            Size    Used    Priority
 ```
-* Any node that is intended to run keepalived must have the sysctl setting `net.ipv4.ip_nonlocal_bind=1` configured.
+* Any node that is intended to run keepalived must have the sysctl setting `net.ipv4.ip_nonlocal_bind=1` configured. (TODO: which are the nodes intended to run keepalived?)
 ```
 > sysctl net.ipv4.ip_nonlocal_bind
 net.ipv4.ip_nonlocal_bind = 1
 ```
 
 
-## Configuring slate-manager and Kubespray
-These are all steps to do on the slate-manager. Additional notes and instructions can be found within Kubespray's own docs:
+## Configuring Manager and Kubespray
+These are all steps to do on the manager (i.e slate-mgr in our setup). Additional notes and instructions can be found within Kubespray's own docs:
 https://github.com/mrbobbytables/kubespray/blob/master/docs/ansible.md
 
 Install pip as appropriate to the host OS. e.g. For CentOS
@@ -50,23 +52,23 @@ cd kubespray
 git checkout feature-keepalived-cloud-provider
 ```
 
-Prepare the Ansible host Inventory in `inventory/inventory.ini` using the example file `inventory/inventory.example` as a reference. When complete, it should look similar to this:
+Prepare the Ansible host Inventory in `inventory/inventory.ini` using the example file `inventory/inventory.example` as a reference. For our setup, it is the following:
 
 ```
 [kube-master]
-master-01
-master-02
-master-03
+slate-01
+slate-02
+slate-03
 
 [etcd]
-master-01
-master-02
-master-03
+slate-01
+slate-02
+slate-03
 
 [kube-node]
-node-01
-node-02
-node-03
+slate-01
+slate-02
+slate-03
 
 [k8s-cluster:children]
 kube-node
