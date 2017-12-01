@@ -2,10 +2,11 @@
 
 ## Prerequisites
 
-First, basic terminology for the installation:
+First, some basic terminology for the installation:
 * manager: This is where you will run all the scripts for the installation. It will not be part of the resulting Kubernetes cluster. It is the manager of the installation, not Kubernetes.
 * master: These are the nodes that will orchestrate Kubernetes cluster. The recommended setup is to have three of them.
 * node: These are the nodes that will actually run the services.
+
 A single machine can function as both slate-master and slate-node. The slate-manager should be separate. Here we will assume our setup consists of four machines:
 * slate-mgr: the manager node from which we perform the installation
 * slate-01, slate-02, slate-03: each machine will be used as both slate-master and slate-node. 
