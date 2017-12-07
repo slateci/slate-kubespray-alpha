@@ -24,6 +24,11 @@ Filename                                Type            Size    Used    Priority
 > sysctl net.ipv4.ip_nonlocal_bind
 net.ipv4.ip_nonlocal_bind = 1
 ```
+* Nodes should also be set configures do that the sysctl setting `net.ipv4.conf.all.rp_filter` is either set to 1 or 0.
+```
+> sysctl net.ipv4.conf.all.rp_filter
+net.ipv4.conf.all.rp_filter = 1
+```
 
 
 ## Configuring Manager and Kubespray
