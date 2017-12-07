@@ -28,7 +28,7 @@ net.ipv4.ip_nonlocal_bind = 1
 
 ## Configuring Manager and Kubespray
 These are all steps to do on the manager (i.e slate-mgr in our setup). Additional notes and instructions can be found within Kubespray's own docs:
-https://github.com/mrbobbytables/kubespray/blob/master/docs/ansible.md
+https://github.com/kubernetes-incubator/kubespray/blob/master/docs/ansible.md
 
 Install pip as appropriate to the host OS. e.g. For CentOS
 
@@ -48,7 +48,7 @@ pip install ansible netaddr
 Clone the fork of kubespray and checkout the branch with `keepalived-cloud-provider` support
 
 ```th
-git clone https://github.com/mrbobbytables/kubespray.git
+git clone https://github.com/kubernetes-incubator/kubespray.git
 cd kubespray
 git checkout feature-keepalived-cloud-provider
 ```
