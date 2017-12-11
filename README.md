@@ -12,7 +12,7 @@ A single machine can function as both slate-master and slate-node. The slate-man
 * slate-01, slate-02, slate-03: each machine will be used as both slate-master and slate-node. 
 
 Basic required configurations of the machines:
-* CentOS/RHEL 7
+* CentOS/RHEL 7 (note that Scientific Linux is not supported)
 * The user provisioning the cluster must have passwordless sudo access to the targets
 * Nodes (both Master and Worker) must have swap disabled
 ```
