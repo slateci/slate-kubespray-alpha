@@ -184,4 +184,4 @@ With the cluster provisioned, keepalived-cloud-provider can now be deployed. Thi
 
 4. Now deploy the keepalived-cloud-provider services by creating everything within the keepalived-cloud-provider directory. `kubectl create -f keepalived-cloud-provider/*`.
 
-5. The keepalived-vip pods will continue to crash until a service is configured that consumes an IP from the pool. This can be done by updating a service such as `kubernetes-dashboard` or deploying some other small service with `spec.type: LoadBalanacer` configured.
+5. The keepalived-vip pods will continue to crash until a service is configured that consumes an IP from the pool. This can be done by updating a service such as `kubernetes-dashboard` or deploying some other small service with `spec.type: LoadBalancer` configured.
